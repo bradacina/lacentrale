@@ -86,7 +86,7 @@ func main() {
 	year := 2009
 
 	csvFile, err := os.OpenFile(fmt.Sprintf("%s_%s.csv", *manuf, *model),
-		os.O_RDWR|os.O_APPEND, os.ModePerm)
+		os.O_RDWR|os.O_CREATE, os.ModePerm)
 	if err != nil {
 		panic(err)
 	}
