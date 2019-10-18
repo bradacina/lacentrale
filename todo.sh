@@ -13,5 +13,5 @@
 ./lacentrale -make NISSAN -model QASHQAI
 ./lacentrale -make NISSAN -model X-TRAIL
 ./lacentrale -make VOLKSWAGEN -model TIGUAN
-./lacentrale -make TOYOTA -model RAV
-./lacentrale -make TOYOTA -model LAND CRUISER
+./lacentrale -make TOYOTA -model 'RAV 4'
+./lacentrale -make TOYOTA -model 'LAND CRUISER'

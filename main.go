@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"net/url"
 	"os"
 	"strings"
 	"time"
@@ -24,7 +25,8 @@ func getOnePage(manufacturer string, model string, year int, page int) []info {
 
 	client := &http.Client{}
 
-	url := fmt.Sprintf("https://www.lacentrale.fr/listing?makesModelsCommercialNames=%s:%s&yearMax=%d&yearMin=%d&page=%d", manufacturer, model, year, year, page)
+	url := fmt.Sprintf("https://www.lacentrale.fr/listing?makesModelsCommercialNames=%s:%s&yearMax=%d&yearMin=%d&page=%d",
+		url.QueryEscape(manufacturer), url.QueryEscape(model), year, year, page)
 	// Request the HTML page.
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
@@ -32,6 +34,8 @@ func getOnePage(manufacturer string, model string, year int, page int) []info {
 	}
 
 	req.Header.Set("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36 OPR/63.0.3368.107")
+
+	log.Println(req.URL)
 
 	res, err := client.Do(req)
 	if err != nil {
